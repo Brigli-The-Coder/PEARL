@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Pearl Boutique — Fustane & Kostume, Shkodër</title>
+<meta name="description" content="Pearl Boutique Shkodër: fustane të gjata e të shkurtra, kostume meshkujsh. Dërgesa me postë.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@400;600;700&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A84C;--gold-l:#E8C97A;--gold-d:#A07828;--bg:#0a0a0b;--bg2:#101012;--bg3:#16161a;--tx:#f3ece0;--mid:#bdb5a5;--lt:#7d7769;--pink:#ff3b6b;--line:rgba(201,168,76,.18)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--tx);font-family:'Jost',system-ui,sans-serif;font-weight:300;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom,0)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+/* cursor */
+.cursor,.ring{position:fixed;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%);left:-50px;top:-50px}
+.cursor{width:8px;height:8px;background:var(--gold)}
+.ring{width:36px;height:36px;border:1px solid rgba(201,168,76,.5);z-index:9998;transition:width .3s,height .3s}
+@media(hover:hover) and (pointer:fine){body,a,button{cursor:none}}
+@media(hover:none){.cursor,.ring{display:none}}
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:calc(22px + env(safe-area-inset-top,0px)) 60px 22px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(0,0,0,.92),transparent)}
+.logo{font-family:'Cinzel',serif;font-size:22px;font-weight:700;letter-spacing:8px;color:var(--gold)}
+.logo span{display:block;font-family:'Cormorant Garamond',serif;font-size:9px;letter-spacing:5px;color:rgba(245,238,216,.7);font-weight:300;margin-top:2px}
+.nl{display:flex;gap:46px;list-style:none}
+.nl a{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(245,238,216,.85);position:relative;transition:color .3s}
+.nl a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.nl a:hover{color:var(--gold)}.nl a:hover::after{width:100%}
+.ncta{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--gold);border:1px solid var(--gold);padding:10px 22px;text-transform:uppercase;transition:.3s}
+.ncta:hover{background:var(--gold);color:#000}
+.ham{display:none;flex-direction:column;gap:5px;padding:6px;background:none;border:none}
+.ham span{display:block;width:24px;height:1px;background:var(--gold);transition:.3s}
+.ham.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mnav{position:fixed;inset:0;background:rgba(5,5,6,.97);z-index:99;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;opacity:0;pointer-events:none;transition:opacity .35s}
+.mnav.open{opacity:1;pointer-events:all}
+.mnav a{font-family:'Cinzel',serif;font-size:22px;letter-spacing:6px;text-transform:uppercase;color:rgba(245,238,216,.85)}
+.mnav a:hover{color:var(--gold)}
+/* hero */
+.hero{position:relative;height:100vh;height:100svh;min-height:560px;display:flex;align-items:center;overflow:hidden}
+#hc{position:absolute;inset:0;width:100%;height:100%}
+.hc{position:relative;z-index:10;padding:0 60px;max-width:760px}
+.eye{font-size:10px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+.ht{font-family:'Cinzel',serif;font-size:clamp(50px,9vw,104px);font-weight:400;line-height:1;letter-spacing:4px;color:#faf8f4;margin-bottom:14px}
+.ht em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-l);font-size:1.05em}
+.ht i{font-style:normal;color:var(--pink);font-size:.4em;vertical-align:middle}
+.hs{font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:rgba(245,238,216,.85);margin-bottom:44px;letter-spacing:2px}
+.eye,.ht,.hs,.hb{opacity:0;animation:up 1s ease forwards}
+.eye{animation-delay:.3s}.ht{animation-delay:.5s}.hs{animation-delay:.7s}.hb{animation-delay:.9s}
+.hb{display:flex;gap:18px;flex-wrap:wrap}
+.bp,.bo{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;padding:16px 38px;transition:.3s;display:inline-block;text-align:center}
+.bp{background:var(--gold);color:#000;font-weight:600}.bp:hover{background:var(--gold-l);transform:translateY(-2px)}
+.bo{border:1px solid rgba(201,168,76,.5);color:#faf8f4}.bo:hover{border-color:var(--gold);color:var(--gold)}
+.scr{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold)}
+.scr b{width:1px;height:56px;background:linear-gradient(var(--gold),transparent);animation:pulse 2s infinite}
+.div{height:4px;background:linear-gradient(to right,transparent,var(--gold-d),var(--gold),var(--gold-d),transparent)}
+.mq{background:var(--gold);padding:16px 0;overflow:hidden}
+.mt{display:flex;gap:50px;white-space:nowrap;width:max-content;animation:mq 26s linear infinite}
+.mt span{font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#0a0a0b;font-weight:600}
+/* common */
+.sec{padding:120px 60px}
+.lab{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.st{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,52px);font-weight:300;line-height:1.15;color:var(--tx)}
+.st em{font-style:italic;color:var(--gold-l)}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px;gap:20px}
+.sl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(201,168,76,.4);padding-bottom:4px}
+.rv{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s}
+.rv.on{opacity:1;transform:none}
+/* intro */
+.intro{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center;position:relative;background:var(--bg);overflow:hidden}
+.intro::before{content:'PEARL';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cinzel',serif;font-size:min(200px,24vw);font-weight:700;color:rgba(201,168,76,.045);letter-spacing:20px;pointer-events:none}
+.intro p.t{font-size:15px;line-height:1.9;color:var(--mid);margin-bottom:18px}
+.intro .st{margin-bottom:28px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:44px;padding-top:44px;border-top:1px solid var(--line)}
+.sn{font-family:'Cinzel',serif;font-size:36px;color:var(--gold)}
+.sd{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--lt);margin-top:4px}
+.iv{position:relative;height:500px}
+.fb1{position:absolute;top:0;left:10px;right:0;bottom:0px;border:1px solid var(--line);background-image: url(./logoPearl.png);filter:drop-shadow(0 20px 60px rgba(201,168,76,.25)); background-size: contain; background-repeat: no-repeat;}
+.coll{background:var(--bg2)}
+.cg{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:340px 240px;gap:2px}
+.cc{position:relative;overflow:hidden}
+.cc:first-child{grid-row:1/3}
+.cb{position:absolute;inset:0;transition:transform .6s}
+.cc:hover .cb{transform:scale(1.05)}
+.c1{background:linear-gradient(160deg,#3a2e0e,#0d0d0f 70%)}.c2{background:linear-gradient(135deg,#4b1226,#0d0d0f)}.c3{background:linear-gradient(135deg,#1c2a44,#0d0d0f)}.c4{background:linear-gradient(135deg,#2a2a2e,#0d0d0f)}.c5{background:linear-gradient(135deg,#3d2a14,#0d0d0f)}
+.co{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85),transparent 65%)}
+.cn{position:absolute;bottom:0;left:0;right:0;padding:28px;z-index:2}
+.bd{display:inline-block;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:4px 10px;margin-bottom:12px}
+.cn h3{font-family:'Cinzel',serif;font-size:19px;letter-spacing:2px;margin-bottom:6px;font-weight:400}
+.cn p{font-size:13px;color:rgba(245,238,216,.65);line-height:1.6}
+.cc:hover /* features */
+.ft{background:var(--bg3);padding:70px 60px;display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line)}
+.fi{text-align:center;padding:20px;border-right:1px solid var(--line)}
+.fi:last-child{border:0}
+.fi h4{font-family:'Cinzel',serif;font-size:13px;letter-spacing:2px;color:var(--gold);margin-bottom:10px;font-weight:400}
+.fi p{font-size:12px;line-height:1.7;color:var(--lt)}
+/* hanger gallery */
+.gal{background:var(--bg);padding-inline:0;overflow:hidden}
+.gal .sh{padding-inline:60px}
+.ar{display:flex;gap:10px}
+.ar button{width:44px;height:44px;border:1px solid rgba(201,168,76,.5);background:none;color:var(--gold);font-size:18px;transition:.3s;border-radius:50%}
+.ar button:hover{background:var(--gold);color:#000}
+.rail{position:relative}
+.rod{position:absolute;top:34px;left:0;right:0;height:5px;background:linear-gradient(var(--gold-l),var(--gold-d));border-radius:3px;z-index:2;box-shadow:0 4px 14px rgba(201,168,76,.25)}
+.scroll{display:flex;gap:34px;overflow-x:auto;padding:0 60px 40px;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.scroll::-webkit-scrollbar{display:none}
+.scroll.drag{scroll-snap-type:none;cursor:grabbing}
+.hang{flex:0 0 auto;padding-top:24px;width:min(260px,64vw);scroll-snap-align:center;transform-origin:50% 0;animation:sway 5s ease-in-out infinite;position:relative}
+.hang:nth-child(2n){animation-duration:6.4s;animation-delay:-1.5s}
+.hang:nth-child(3n){animation-duration:5.6s;animation-delay:-3s}
+.hang:hover{animation-play-state:paused}
+.hg{display:block;width:90px;height:62px;margin:0 auto -4px;position:relative;z-index:3;color:var(--gold)}
+.ph{aspect-ratio:3/4.4;border:1px solid var(--line);background:linear-gradient(160deg,#241c0a,#0e0e10);overflow:hidden;position:relative;box-shadow:0 18px 40px rgba(0,0,0,.6)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;-webkit-user-drag:none;user-select:none;transition:transform .6s}
+.hang:hover .ph img{transform:scale(1.05)}
+/* products */
+.pr{background:var(--bg2)}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.pc{background:var(--bg3);border:1px solid var(--line)}
+.pi{height:240px}
+.pc:nth-child(1) .pi{background:linear-gradient(135deg,#5a1030,#16161a)}
+.pc:nth-child(2) .pi{background:linear-gradient(135deg,#14305a,#16161a)}
+.pc:nth-child(3) .pi{background:linear-gradient(135deg,#4a3a10,#16161a)}
+.pn{padding:26px 28px;border-top:1px solid var(--line)}
+.pn small{display:block;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.pn h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;margin-bottom:14px}
+.pn div{display:flex;justify-content:space-between;align-items:center}
+.pp{font-family:'Cinzel',serif;font-size:18px;color:var(--gold-l)}
+.pb{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:8px 14px;transition:.3s}
+.pb:hover{background:var(--gold);color:#000}
+/* store */
+.store{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;background:var(--bg)}
+.sv{position:relative;height:540px}
+.sm{position:absolute;inset:0 40px 0 0;background:radial-gradient(circle at 40% 30%,#2e2410,#0d0d0f 75%);border:1px solid var(--line);overflow:hidden}
+.sm p{position:absolute;left:28px;bottom:28px;font-family:'Cormorant Garamond',serif;font-size:28px;font-style:italic;color:var(--tx);line-height:1.25}
+.sm p small{display:block;font-family:'Cinzel',serif;font-style:normal;font-size:11px;letter-spacing:3px;color:var(--gold);margin-bottom:6px}
+.sa{position:absolute;bottom:-20px;right:0;width:170px;height:170px;background:var(--gold);color:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;z-index:2;text-align:center;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px}
+.store .st{margin-bottom:26px}
+.store .tx{font-size:15px;line-height:1.9;color:var(--mid);margin-bottom:34px}
+.hrs{background:rgba(201,168,76,.05);border:1px solid var(--line);border-left:3px solid var(--gold);padding:26px;margin-bottom:30px}
+.hrs h4{font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:var(--gold);margin-bottom:12px;text-transform:uppercase;font-weight:400}
+.hr{display:flex;justify-content:space-between;font-size:13px;color:var(--mid);padding:6px 0}
+.hr strong{color:var(--tx);font-weight:400}
+.ad{font-size:14px;line-height:1.9;color:var(--mid)}
+.ad strong{color:var(--gold);font-weight:400}
+.ad a{color:var(--gold-l)}
+/* review */
+.rev{background:radial-gradient(ellipse at center,#1d1808,var(--bg) 70%);text-align:center;border-block:1px solid var(--line)}
+.rev .st{margin-bottom:12px}
+.stars{font-size:30px;color:var(--gold);letter-spacing:.3em;margin:14px 0}
+.rev p{max-width:560px;margin:0 auto 32px;color:var(--mid);font-size:15px;line-height:1.8}
+.rb{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+/* cta */
+.cta{background:var(--gold);padding:56px 60px;display:flex;justify-content:space-between;align-items:center;gap:30px}
+.cta h2{font-family:'Cinzel',serif;font-size:clamp(20px,3vw,28px);color:#0a0a0b;letter-spacing:3px;font-weight:600}
+.cta p{font-size:14px;color:rgba(10,10,11,.75);margin-top:6px}
+.bd2{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;background:#0a0a0b;color:var(--gold);padding:16px 36px;white-space:nowrap;flex-shrink:0;transition:.3s}
+.bd2:hover{background:#000;transform:translateY(-2px)}
+footer{background:#050506;padding:70px 60px 34px;border-top:1px solid var(--line)}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;margin-bottom:50px}
+.fg p{font-size:13px;line-height:1.8;color:rgba(245,238,216,.4);margin-top:18px;max-width:380px}
+.fg h4{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-weight:400}
+.fg li{list-style:none;margin-bottom:10px}
+.fg li a{font-size:13px;color:rgba(245,238,216,.45);transition:color .3s}
+.fg li a:hover{color:var(--gold)}
+.fbm{display:flex;justify-content:space-between;gap:12px;padding-top:28px;border-top:1px solid rgba(201,168,76,.1);font-size:11px;color:rgba(245,238,216,.3);letter-spacing:1px}
+.fbm i{font-style:normal;color:var(--pink)}
+/* anim */
+@keyframes up{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes pulse{50%{opacity:.3}}
+@keyframes mq{to{transform:translateX(-50%)}}
+@keyframes sway{0%,100%{transform:rotate(-1.4deg)}50%{transform:rotate(1.4deg)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv,.eye,.ht,.hs,.hb{opacity:1;transform:none}}
+/* responsive */
+@media(max-width:1024px){
+nav{padding-inline:28px}.nl,.ncta{display:none}.ham{display:flex}
+.hc,.sec,.ft,.cta,footer{padding-inline:28px}.gal .sh{padding-inline:28px}.scroll{padding-inline:28px}
+.intro,.store{grid-template-columns:1fr;gap:56px}.iv{height:320px}
+.cg{grid-template-columns:1fr 1fr;grid-template-rows:auto}.cc{height:240px}.cc:first-child{grid-row:auto;grid-column:1/3;height:300px}
+.ft{grid-template-columns:1fr 1fr}.fi:nth-child(2){border:0}
+.pg{grid-template-columns:1fr 1fr}.sv{height:360px}
+.fg{grid-template-columns:1fr 1fr}.fg>div:first-child{grid-column:1/3}
+.cta{flex-direction:column;text-align:center}}
+@media(max-width:640px){
+.sec{padding-block:80px}.hb{flex-direction:column}.hb a{width:100%}
+.cg,.pg,.ft{grid-template-columns:1fr}.cc:first-child{grid-column:auto}.fi{border:0;border-bottom:1px solid var(--line)}
+.sh{flex-direction:column;align-items:flex-start}.hs{font-size:19px}
+.stats{grid-template-columns:1fr 1fr}.fg{grid-template-columns:1fr}.fg>div:first-child{grid-column:auto}
+.fbm{flex-direction:column;text-align:center}.sa{width:130px;height:130px}.ar{display:none}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cur"></div><div class="ring" id="ring"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="hg" viewBox="0 0 90 62"><path d="M45 4a7 7 0 1 1 7 7c-4 0-7 2-7 6v4M45 21L6 52c-3 3-1 7 3 7h72c4 0 6-4 3-7z" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg>
+
+<nav>
+  <a href="#" class="logo">PEARL<span>Boutique · Shkodër</span></a>
+  <ul class="nl"><li><a href="#koleksioni">Koleksioni</a></li><li><a href="#galeria">Galeria</a></li><li><a href="#dyqani">Dyqani</a></li><li><a href="#review">Review</a></li></ul>
+  <a href="tel:+355695744044" class="ncta">Thirr Tani</a>
+  <button class="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mnav" id="mnav">
+  <a href="#koleksioni">Koleksioni</a><a href="#galeria">Galeria</a><a href="#dyqani">Dyqani</a><a href="#review">Review</a>
+  <a href="tel:+355695744044" style="font-size:13px;color:var(--gold);border:1px solid var(--gold);padding:14px 34px">Thirr Tani</a>
+</div>
+
+<section class="hero">
+  <canvas id="hc"></canvas>
+  <div class="hc">
+    <p class="eye">✦ Best Dresses &amp; Suits</p>
+    <h1 class="ht">Pearl<br><em>Boutique</em></h1>
+    <p class="hs">Fustanet që e bëjnë natën tuaj të paharrueshme</p>
+    <div class="hb"><a href="#galeria" class="bp">Shiko Galerinë</a><a href="tel:+355695744044" class="bo">+355 69 574 4044</a></div>
+  </div>
+  <div class="scr"><span>Zbrit</span><b></b></div>
+</section>
+<div class="div"></div>
+
+<div class="mq"><div class="mt">
+  <span>Fustane të gjata</span><span>✦</span><span>Fustane të shkurtra</span><span>✦</span><span>Kostume meshkujsh</span><span>✦</span><span>Dërgesa me postë</span><span>✦</span><span>Me qira</span><span>✦</span>
+  <span>Fustane të gjata</span><span>✦</span><span>Fustane të shkurtra</span><span>✦</span><span>Kostume meshkujsh</span><span>✦</span><span>Dërgesa me postë</span><span>✦</span><span>Me qira</span><span>✦</span>
+</div></div>
+
+<section class="sec intro" id="rreth">
+  <div class="rv">
+    <p class="lab">✦ Rreth Nesh</p>
+    <h2 class="st">Elegancë<br><em>për çdo natë</em><br>të veçantë</h2>
+    <p class="t">Pearl Boutique ndodhet në Shkodër dhe sjell fustane e kostume për dasma, mbrëmje, diplomime dhe çdo festë që ka rëndësi për ju.</p>
+    <p class="t">Bëjmë dërgesa me postë, kështu që mund të zgjidhni nga çdo qytet. Për fustane me qira, na gjeni te motra jonë @passiondresses.</p>
+    <div class="stats">
+      <div><div class="sn">6000</div><div class="sd">Lekë · Fustan i gjatë</div></div>
+      <div><div class="sn">4000</div><div class="sd">Lekë · Fustan i shkurtër</div></div>
+      <div><div class="sn">08–20</div><div class="sd">Orari i punës</div></div>
+      <div><div class="sn">Postë</div><div class="sd">Dërgesa në të gjithë vendin</div></div>
+    </div>
+  </div>
+  <div class="iv rv"><div class="fb1"></div></div>
+</section>
+
+<section class="sec coll" id="koleksioni">
+  <div class="sh rv"><div><p class="lab">✦ Koleksioni</p><h2 class="st">Stile për<br>çdo mbrëmje</h2></div><a href="https://instagram.com/_boutiquepearl" target="_blank" rel="noopener" class="sl">Shiko Instagram →</a></div>
+  <div class="cg rv">
+    <div class="cc"><div class="cb c1"></div><div class="co"></div><div class="cn"><span class="bd">Featured</span><h3>FUSTANE TË GJATA</h3><p>Çarje anësore, korset të zbukuruar, xixa dhe detaje me gurë. 6000 Lekë.</p></div></div>
+    <div class="cc"><div class="cb c2"></div><div class="co"></div><div class="cn"><span class="bd">Mbrëmje</span><h3>FUSTANE TË SHKURTRA</h3><p>Korse, pendë dhe shkëlqim. 4000 Lekë.</p></div></div>
+    <div class="cc"><div class="cb c3"></div><div class="co"></div><div class="cn"><span class="bd">Meshkuj</span><h3>KOSTUME</h3><p>Kostume klasike që përputhen me fustanin.</p></div></div>
+    <div class="cc"><div class="cb c4"></div><div class="co"></div><div class="cn"><span class="bd">Detaje</span><h3>XIXA &amp; GURË</h3><p>Fustane me shkëlqim për çdo moment.</p></div></div>
+    <div class="cc"><div class="cb c5"></div><div class="co"></div><div class="cn"><span class="bd">Shërbim</span><h3>DËRGESA ME POSTË</h3><p>Porosit nga çdo vend, ne dërgojmë.</p></div></div>
+  </div>
+</section>
+
+<div class="ft rv">
+  <div class="fi"><h4>Dërgesa me Postë</h4><p>Bëjmë dërgesa në të gjithë vendin</p></div>
+  <div class="fi"><h4>Me Qira</h4><p>Fustane me qira te @passiondresses</p></div>
+  <div class="fi"><h4>Fustane &amp; Kostume</h4><p>Për femra dhe meshkuj, nën një çati</p></div>
+  <div class="fi"><h4>Dyqan në Shkodër</h4><p>Tek Çinari, çdo ditë nga 08:00 deri 20:00</p></div>
+</div>
+
+<section class="sec gal" id="galeria">
+  <div class="sh rv"><div><p class="lab">✦ Galeria</p><h2 class="st">Në varëse,<br>gati për ju</h2></div>
+    <div class="ar"><button id="pv" aria-label="Para">←</button><button id="nx" aria-label="Pas">→</button></div></div>
+  <div class="rail"><div class="rod"></div>
+  <div class="scroll" id="sc">
+    <figure class="hang"><svg class="hg"><use href="#hg"/></svg><div class="ph"><img src="./img1.jpg" alt="Fustan Pearl Boutique" loading="lazy" onerror="this.remove()"></div></figure>
+    <figure class="hang"><svg class="hg"><use href="#hg"/></svg><div class="ph"><img src="./img2.jpg" alt="Fustan Pearl Boutique" loading="lazy" onerror="this.remove()"></div></figure>
+    <figure class="hang"><svg class="hg"><use href="#hg"/></svg><div class="ph"><img src="./img3.jpg" alt="Fustan Pearl Boutique" loading="lazy" onerror="this.remove()"></div></figure>
+    <figure class="hang"><svg class="hg"><use href="#hg"/></svg><div class="ph"><img src="./img4.jpg" alt="Fustan Pearl Boutique" loading="lazy" onerror="this.remove()"></div></figure>
+    <figure class="hang"><svg class="hg"><use href="#hg"/></svg><div class="ph"><img src="./img5.jpg" alt="Fustan Pearl Boutique" loading="lazy" onerror="this.remove()"></div></figure>
+    <figure class="hang"><svg class="hg"><use href="#hg"/></svg><div class="ph"><img src="./img6.jpg" alt="Fustan Pearl Boutique" loading="lazy" onerror="this.remove()"></div></figure>
+    <figure class="hang"><svg class="hg"><use href="#hg"/></svg><div class="ph"><img src="./img7.jpg" alt="Fustan Pearl Boutique" loading="lazy" onerror="this.remove()"></div></figure>
+    <figure class="hang"><svg class="hg"><use href="#hg"/></svg><div class="ph"><img src="./img8.jpg" alt="Fustan Pearl Boutique" loading="lazy" onerror="this.remove()"></div></figure>
+    <figure class="hang"><svg class="hg"><use href="#hg"/></svg><div class="ph"><img src="./img9.jpg" alt="Fustan Pearl Boutique" loading="lazy" onerror="this.remove()"></div></figure>
+    <figure class="hang"><svg class="hg"><use href="#hg"/></svg><div class="ph"><img src="./img10.jpg" alt="Fustan Pearl Boutique" loading="lazy" onerror="this.remove()"></div></figure>
+    <figure class="hang"><svg class="hg"><use href="#hg"/></svg><div class="ph"><img src="./img11.jpg" alt="Fustan Pearl Boutique" loading="lazy" onerror="this.remove()"></div></figure>
+    <figure class="hang"><svg class="hg"><use href="#hg"/></svg><div class="ph"><img src="./img12.jpg" alt="Fustan Pearl Boutique" loading="lazy" onerror="this.remove()"></div></figure>
+  </div></div>
+</section>
+
+<section class="sec pr">
+  <div class="sh rv"><div><p class="lab">✦ Nga Katalogu</p><h2 class="st">Disa nga<br>modelet tona</h2></div><a href="https://njilink.com/c/pearl-boutique/" target="_blank" rel="noopener" class="sl">Katalogu i plotë →</a></div>
+  <div class="pg rv">
+    <div class="pc"><div class="pi"></div><div class="pn"><small>Fustan i gjatë</small><h3>Fuksia me supa të zbuluara dhe çarje anësore</h3><div><span class="pp">6000 Lekë</span><a class="pb" href="https://njilink.com/c/pearl-boutique/p/fustan-i-gjate-fuksia-me-supa-te-zbuluara-dhe-carje-anesore/" target="_blank" rel="noopener">Shiko →</a></div></div></div>
+    <div class="pc"><div class="pi"></div><div class="pn"><small>Fustan i gjatë</small><h3>Blu me korset të zbukuruar dhe çarje anësore</h3><div><span class="pp">6000 Lekë</span><a class="pb" href="https://njilink.com/c/pearl-boutique/p/fustan-i-gjate-blu-me-korset-te-zbukuruar-dhe-carje-anesore/" target="_blank" rel="noopener">Shiko →</a></div></div></div>
+    <div class="pc"><div class="pi"></div><div class="pn"><small>Fustan i shkurtër</small><h3>Rozë me korse dhe rripa të shkëlqyeshëm</h3><div><span class="pp">4000 Lekë</span><a class="pb" href="https://njilink.com/c/pearl-boutique/p/fustan-i-shkurter-roze-me-korse-dhe-rripa-te-shkelqyeshem/" target="_blank" rel="noopener">Shiko →</a></div></div></div>
+  </div>
+</section>
+
+<section class="sec store" id="dyqani">
+  <div class="sv rv"><div class="sm"><p><small>DYQANI FIZIK</small>Tek Çinari,<br>në Shkodër</p></div><div class="sa">Rruga<br>"Oso Kuka"</div></div>
+  <div class="rv">
+    <p class="lab">✦ Dyqani Ynë</p>
+    <h2 class="st">Na vizitoni<br>në <em>Shkodër</em></h2>
+    <p class="tx">Ejani të provoni fustanet dhe kostumet drejtpërdrejt. Nëse jeni larg, na shkruani ose na telefononi dhe ju dërgojmë me postë.</p>
+    <div class="hrs"><h4>Orari i Punës</h4><div class="hr"><span>Orari</span><strong>08:00 — 20:00</strong></div></div>
+    <div class="ad"><strong>Adresa</strong><br>Rruga "Oso Kuka", tek Çinari<br>Shkodër, Albania<br><a href="tel:+355695744044">+355 69 574 4044</a> · <a href="https://wa.me/355695744044" target="_blank" rel="noopener">WhatsApp</a></div>
+  </div>
+</section>
+
+<section class="sec rev" id="review">
+  <div class="rv">
+    <p class="lab">✦ Review</p>
+    <h2 class="st">Na vlerësoni<br><em>në Google</em></h2>
+    <div class="stars" aria-hidden="true">★★★★★</div>
+    <p>Mendimi juaj na ndihmon shumë. Na lini një review, na merr vetëm një minutë.</p>
+    <div class="rb">
+      <a class="bp" target="_blank" rel="noopener" href="https://search.google.com/local/writereview?placeid=ChIJVbMDU9wBThMR2DaOLTj_WAI">Shkruaj një Review</a>
+      <a class="bo" target="_blank" rel="noopener" href="https://search.google.com/local/reviews?placeid=ChIJVbMDU9wBThMR2DaOLTj_WAI">Shiko Review-t</a>
+    </div>
+  </div>
+</section>
+
+<div class="cta" id="kontakt">
+  <div><h2>Rezervoni Fustanin Tuaj</h2><p>Telefononi ose shkruani në WhatsApp, ju përgjigjemi me kënaqësi</p></div>
+  <a href="tel:+355695744044" class="bd2">Na Kontaktoni</a>
+</div>
+
+<footer>
+  <div class="fg">
+    <div><a href="#" class="logo">PEARL<span>Boutique · Shkodër</span></a><p>Best dresses and suits. Fustane e kostume me dërgesa me postë, në Shkodër.</p></div>
+    <div><h4>Lidhje</h4><ul><li><a href="#koleksioni">Koleksioni</a></li><li><a href="#galeria">Galeria</a></li><li><a href="#dyqani">Dyqani</a></li><li><a href="#review">Review</a></li></ul></div>
+    <div><h4>Na Gjeni</h4><ul><li><a href="https://instagram.com/_boutiquepearl" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://instagram.com/passiondresses" target="_blank" rel="noopener">@passiondresses (me qira)</a></li><li><a href="https://wa.me/355695744044" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="tel:+355695744044">+355 69 574 4044</a></li></ul></div>
+  </div>
+  <div class="fbm"><span>© <span id="yr"></span> Pearl Boutique — Të gjitha të drejtat e rezervuara</span><span>Krijuar në Shkodër</span></div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+// cursor
+var cur=document.getElementById('cur'),ring=document.getElementById('ring'),mx=0,my=0,rx=0,ry=0;
+if(matchMedia('(hover:hover) and (pointer:fine)').matches){
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY});
+  (function a(){cur.style.left=mx+'px';cur.style.top=my+'px';rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a)})();
+  document.querySelectorAll('a,button,.cc,.pc,.hang').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ring.style.width=ring.style.height='60px'});
+    el.addEventListener('mouseleave',function(){ring.style.width=ring.style.height='36px'});
+  });
+}
+// hero canvas (2D, pa librari)
+var cv=document.getElementById('hc'),c=cv.getContext('2d'),W,H,P=[],M={x:.5,y:.5},T=0,vis=true;
+function size(){var d=Math.min(devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*d;cv.height=H*d;c.setTransform(d,0,0,d,0,0);init()}
+function rst(p,first){p.x=Math.random()*W;p.y=Math.random()*H;p.z=first?Math.random()*600+20:Math.random()*500+100;p.r=Math.random()*1.5+.5;p.a=Math.random()*.6+.2;p.pearl=Math.random()<.12}
+function init(){P=[];var n=W<700?90:190;for(var i=0;i<n;i++){var p={};rst(p,true);P.push(p)}}
+var G=[];for(var i=0;i<6;i++)G.push({x:.1+i*.16,y:.2+Math.random()*.6,ph:Math.random()*6.28,sp:.0004+Math.random()*.0003,s:46+Math.random()*50,o:.06+Math.random()*.05,r:(Math.random()-.5)*.4});
+function dress(x,y,s,o,r){
+  c.save();c.translate(x,y);c.rotate(r);c.globalAlpha=o;c.strokeStyle='#C9A84C';c.lineWidth=1.5;c.beginPath();
+  c.moveTo(-.28*s,-s);c.lineTo(-.2*s,-.55*s);c.lineTo(-.14*s,-.3*s);
+  c.bezierCurveTo(-.3*s,.1*s,-.7*s,.6*s,-.8*s,s);
+  c.quadraticCurveTo(0,1.15*s,.8*s,s);
+  c.bezierCurveTo(.7*s,.6*s,.3*s,.1*s,.14*s,-.3*s);
+  c.lineTo(.2*s,-.55*s);c.lineTo(.28*s,-s);
+  c.moveTo(-.2*s,-.55*s);c.quadraticCurveTo(0,-.4*s,.2*s,-.55*s);
+  c.stroke();c.restore()}
+function draw(){
+  requestAnimationFrame(draw);if(!vis)return;
+  var g=c.createLinearGradient(0,0,W,H);g.addColorStop(0,'#050506');g.addColorStop(.5,'#0d0b07');g.addColorStop(1,'#14100a');
+  c.globalAlpha=1;c.fillStyle=g;c.fillRect(0,0,W,H);
+  [[.3,.3,'rgba(201,168,76,.10)'],[.75,.65,'rgba(255,59,107,.07)'],[.5,.9,'rgba(201,168,76,.07)']].forEach(function(o){
+    var q=c.createRadialGradient(o[0]*W,o[1]*H,0,o[0]*W,o[1]*H,W*.4);q.addColorStop(0,o[2]);q.addColorStop(1,'rgba(0,0,0,0)');c.fillStyle=q;c.fillRect(0,0,W,H)});
+  c.globalAlpha=.05;c.strokeStyle='#C9A84C';c.lineWidth=.5;
+  var fx=W/2+(M.x-.5)*80,fy=H/2+(M.y-.5)*80;
+  for(var i=0;i<=20;i++){var x=i/20*W;c.beginPath();c.moveTo(fx,fy);c.lineTo(x,H);c.moveTo(fx,fy);c.lineTo(x,0);c.stroke()}
+  for(var j=0;j<=12;j++){var y=j/12*H;c.beginPath();c.moveTo(fx,fy);c.lineTo(0,y);c.moveTo(fx,fy);c.lineTo(W,y);c.stroke()}
+  c.globalAlpha=1;
+  P.forEach(function(p){
+    var sc=600/p.z,px=(p.x-W/2)*sc+W/2+(M.x-.5)*-20*sc,py=(p.y-H/2)*sc+H/2;
+    if(px<-9||px>W+9||py<-9||py>H+9){rst(p);return}
+    var r=Math.max(.3,p.r*sc*.5);
+    if(p.pearl){var q=c.createRadialGradient(px-r*.3,py-r*.3,0,px,py,r*2.4);q.addColorStop(0,'rgba(255,252,244,'+p.a+')');q.addColorStop(1,'rgba(200,190,170,0)');c.fillStyle=q;c.beginPath();c.arc(px,py,r*2.4,0,6.28);c.fill()}
+    else{c.fillStyle='rgba(201,168,76,'+p.a+')';c.beginPath();c.arc(px,py,r,0,6.28);c.fill()}
+    p.z-=.6;if(p.z<=10)rst(p)});
+  G.forEach(function(d){dress(d.x*W+Math.sin(T*d.sp*2+d.ph)*30,d.y*H+Math.cos(T*d.sp*2+d.ph)*20,d.s,d.o,d.r+Math.sin(T*d.sp)*.1)});
+  T++}
+addEventListener('resize',size);size();draw();
+document.querySelector('.hero').addEventListener('mousemove',function(e){var b=e.currentTarget.getBoundingClientRect();M.x=(e.clientX-b.left)/b.width;M.y=(e.clientY-b.top)/b.height});
+new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(cv);
+// reveal
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+// menu
+var hm=document.querySelector('.ham'),mn=document.getElementById('mnav');
+function tg(){hm.classList.toggle('open');mn.classList.toggle('open')}
+hm.addEventListener('click',tg);
+mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){hm.classList.remove('open');mn.classList.remove('open')})});
+// gallery: arrows + drag
+var sc=document.getElementById('sc');
+document.getElementById('nx').onclick=function(){sc.scrollBy({left:300,behavior:'smooth'})};
+document.getElementById('pv').onclick=function(){sc.scrollBy({left:-300,behavior:'smooth'})};
+var dn=false,sx=0,sl=0;
+sc.addEventListener('mousedown',function(e){dn=true;sx=e.pageX;sl=sc.scrollLeft;sc.classList.add('drag');e.preventDefault()});
+addEventListener('mouseup',function(){dn=false;sc.classList.remove('drag')});
+addEventListener('mousemove',function(e){if(dn)sc.scrollLeft=sl-(e.pageX-sx)});
+</script>
+</body>
+  </html>
